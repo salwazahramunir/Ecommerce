@@ -4,8 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductCategory;
 
 class Product extends Model
 {
     use HasFactory;
+
+    // table associated with the model
+    protected $table = 'products';
+
+    // Fillable fields
+    protected $fillable = [
+        'name',
+        'price',
+        'image',
+        'description',
+        'stock',
+        'product_category_id'
+    ];
+
+    // one-to-many relationship to the product categories table
+    public function product_categories()
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
+    }
 }

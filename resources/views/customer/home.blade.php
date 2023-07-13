@@ -128,20 +128,22 @@
             <div class="row">
                 @foreach ($products as $row)
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="{{ $row->image }}">
-                            <div class="product__label">
-                                <span>{{ $row->product_categories->name }}</span>
+                    <a href="{{ route('shops.show', $row->id) }}">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg" data-setbg="{{ $row->image }}">
+                                <div class="product__label">
+                                    <span>{{ $row->product_categories->name }}</span>
+                                </div>
+                            </div>
+                            <div class="product__item__text">
+                                <h6><a href="#">{{ $row->name}}</a></h6>
+                                <div class="product__item__price">Rp. {{ $row->price }}</div>
+                                <div class="cart_add">
+                                    <a href="#">Add to cart</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">{{ $row->name}}</a></h6>
-                            <div class="product__item__price">Rp. {{ $row->price }}</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 @endforeach
             </div>

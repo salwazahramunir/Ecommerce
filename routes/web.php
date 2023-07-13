@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,6 @@ Route::get('/products/{id}/detail', [ProductController::class, 'show'])->name('p
 Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+Route::get('/shops', [ShopController::class, 'index'])->name('shops');
+Route::get('/shops/{id}/detail', [ShopController::class, 'show'])->name('shops.show');

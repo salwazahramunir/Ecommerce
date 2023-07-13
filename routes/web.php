@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +17,13 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/product-categories', [ProductCategoryController::class, 'index'])->name('product-categories');
@@ -32,7 +33,7 @@ Route::put('/product-categories/{id}', [ProductCategoryController::class, 'updat
 Route::delete('/product-categories/{id}', [ProductCategoryController::class, 'destroy'])->name('product-categories.destroy');
 
 Route::get('/products', [ProductController::class, 'index'])->name('products');
-Route::geti('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products/{id}/detail', [ProductController::class, 'show'])->name('products.show');
 Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,7 @@ Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('pr
 
 Route::get('/shops', [ShopController::class, 'index'])->name('shops');
 Route::get('/shops/{id}/detail', [ShopController::class, 'show'])->name('shops.show');
+
+Route::get('/carts/{user_id}', [OrderController::class, 'cart'])->name('carts');
+Route::delete('/carts/{product_id}', [OrderController::class, 'deleteOrderDetail'])->name('carts.destroy');
+Route::post('/orders', [OrderController::class, 'storeOrder']) ->name('orders.store');

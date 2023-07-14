@@ -9,7 +9,7 @@
                         <div class="col-lg-8">
                             <div class="hero__text">
                                 <h2>Making your life sweeter one bite at a time!</h2>
-                                <a href="#" class="primary-btn">Our cakes</a>
+                                <a href="{{ route('shops') }}" class="primary-btn">Our cakes</a>
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="#">{{ $row->name}}</a></h6>
-                                <div class="product__item__price">Rp. {{ $row->price }}</div>
+                                <div class="product__item__price">Rp. {{ number_format($row->price) }}</div>
                                 <div class="cart_add">
                                     <a href="#">Add to cart</a>
                                 </div>

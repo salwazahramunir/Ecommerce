@@ -83,6 +83,7 @@
 <script src="{{ asset('customer/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('customer/js/jquery.nicescroll.min.js') }}"></script>
 <script src="{{ asset('customer/js/main.js') }}"></script>
+@yield('scripts')
 </body>
 
 </html>

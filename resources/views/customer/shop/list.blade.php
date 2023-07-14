@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="product__item__text">
                                     <h6><a href="#">{{ $row->name}}</a></h6>
-                                    <div class="product__item__price">Rp. {{ $row->price }}</div>
+                                    <div class="product__item__price">Rp. {{ number_format($row->price) }}</div>
                                     <div class="cart_add">
                                         <a href="#">Add to cart</a>
                                     </div>

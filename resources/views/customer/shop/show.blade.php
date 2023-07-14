@@ -58,19 +58,22 @@
                     <div class="product__details__text">
                         <div class="product__label">{{ $product->product_categories->name }}</div>
                         <h4>{{ $product->name }}</h4>
-                        <h5>Rp. {{ $product->price }}</h5>
+                        <h5>Rp. {{ number_format($product->price) }}</h5>
                         <p>{{ $product->description }}</p>
                         <ul>
                             <li>Stock: <span>{{ $product->stock }}</span></li>
                         </ul>
                         <div class="product__details__option">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
+                            <form action="{{ route('orders.store') }}" method="POST">
+                                @csrf
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="text" value="1" name="quantity">
+                                    </div>
                                 </div>
-                            </div>
-                            <a href="#" class="primary-btn">Add to cart</a>
-                            <a href="#" class="heart__btn"><span class="icon_heart_alt"></span></a>
+                                <input type="text" hidden name="product_id" value="{{ $product->id }}">
+                                <button type="submit" class="primary-btn">Add to cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -151,7 +154,7 @@
                                     </div>
                                     <div class="product__item__text">
                                         <h6><a href="#">{{ $row->name }}</a></h6>
-                                        <div class="product__item__price">Rp. {{ $row->price}}</div>
+                                        <div class="product__item__price">Rp. {{ number_format($row->price) }}</div>
                                         <div class="cart_add">
                                             <a href="#">Add to cart</a>
                                         </div>

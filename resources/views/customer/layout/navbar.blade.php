@@ -31,7 +31,7 @@
                                     <a href="#"><img src="{{ asset('customer/img/icon/heart.png') }}" alt=""></a>
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="#"><img src="{{ asset('customer/img/icon/cart.png') }}" alt=""> <span>0</span></a>
+                                    <a href="{{ route('carts', 2) }}"><img src="{{ asset('customer/img/icon/cart.png') }}" alt=""> <span>0</span></a>
                                     <div class="cart__price">Cart: <span>$0.00</span></div>
                                 </div>
                             </div>

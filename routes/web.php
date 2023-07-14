@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,14 @@ Route::get('/shops/{id}/detail', [ShopController::class, 'show'])->name('shops.s
 
 Route::get('/carts/{user_id}', [OrderController::class, 'cart'])->name('carts');
 Route::delete('/carts/{product_id}', [OrderController::class, 'deleteOrderDetail'])->name('carts.destroy');
-Route::post('/orders', [OrderController::class, 'storeOrder']) ->name('orders.store');
+Route::post('/orders', [OrderController::class, 'storeOrder'])->name('orders.store');
+Route::get('/checkouts/{order_id}', [OrderController::class, 'checkout'])->name('checkouts');
+Route::post('/checkouts/{order_id}', [OrderController::class, 'checkoutStore'])->name('checkouts.store');
+
+Route::get('/addresses', [AddressController::class, 'index'])->name('addresses');
+Route::get('/addresses/{id}/detail', [AddressController::class, 'show'])->name('addresses.show');
+Route::get('/addresses/create', [AddressController::class, 'create'])->name('addresses.create');
+Route::post('/addresses/store', [AddressController::class, 'store'])->name('addresses.store');
+Route::get('/addresses/{id}/edit', [AddressController::class, 'edit'])->name('addresses.edit');
+Route::put('/addresses/{id}', [AddressController::class, 'update'])->name('addresses.update');
+Route::delete('/addresses/{id}', [AddressController::class, 'destroy'])->name('addresses.destroy');

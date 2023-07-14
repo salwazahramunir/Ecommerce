@@ -85,17 +85,17 @@
                         <ul>
                             @if($order)
                                 <li>Subtotal <span>Rp. {{ number_format($order->total_price) }}</span></li>
-                                <li>PPN 11 % <span>Rp. {{ number_format($order->total_price * 0.11) }}</span></li>
+                                <li>Service Fee <span>Rp. {{ number_format($order->total_price * 0.11) }}</span></li>
                                 <li>Total <span>Rp. {{ number_format($order->total_price + ($order->total_price * 0.11 )) }}</span></li>
                             @else
                                 <li>Subtotal <span>Rp. 0</span></li>
-                                <li>PPN 11 % <span>Rp. 0</span></li>
+                                <li>Service Fee <span>Rp. 0</span></li>
                                 <li>Total <span>Rp. 0</span></li>    
                             @endif
 
                         </ul>
                         @if($order)
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <a href="{{ route('checkouts', $order->id )}}" class="primary-btn">Proceed to checkout</a>
                         @endif
                     </div>
                 </div>

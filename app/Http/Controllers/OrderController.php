@@ -10,6 +10,7 @@ use App\Models\ProductCategory;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\User;
+use App\Models\Address;
 
 class OrderController extends Controller
 {
@@ -101,6 +102,7 @@ class OrderController extends Controller
             return redirect('shops');
         } catch (\Exception $e) {
             DB::rollback();
+            return $e;
             return redirect()->back();
         }
     }
@@ -139,5 +141,22 @@ class OrderController extends Controller
             DB::rollback();
             return redirect()->back();
         }
+    }
+
+    public function checkout(string $order_id) {
+        $order_details = OrderDetail::where('order_id', "=", $order_id)->get();
+        $addresses = Address::where('user_id', '=', 2)->get();
+        $order = Order::find($order_id);
+
+        return view('customer.order.checkout', compact('order_details', 'addresses', 'order'));
+    }
+
+    public function checkoutStore(Request $request, string $order_id){
+        $find_order = Order::find($order_id);
+        $find_order->status = "paid off";
+        $find_order->address_id = $request->address_id;
+        $find_order->save();
+
+        return redirect('/');
     }
 }

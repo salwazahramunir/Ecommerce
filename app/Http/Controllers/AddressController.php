@@ -4,26 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Address;
+use App\Models\Order;
 
 class AddressController extends Controller
 {
-    public function index() {
-        $addresses = Address::where('user_id', '=', 2)->get();
+    public function index()
+    {
+        $addresses = Address::where('user_id', '=', auth()->user()->id)->get();
+        $order = Order::where([
+            ['user_id', '=', auth()->user()->id],
+            ['status', '=', 'not yet paid off']
+        ])->first();
 
-        return view('customer.address.list', compact('addresses'));
+        return view('customer.address.list', compact('addresses', 'order'));
     }
 
-    public function show(string $id) {
+    public function show(string $id)
+    {
         $address = Address::find($id);
-
-        return view('customer.address.detail', compact('address'));
+        $order = Order::where([
+            ['user_id', '=', auth()->user()->id],
+            ['status', '=', 'not yet paid off']
+        ])->first();
+        return view('customer.address.detail', compact('address', 'order'));
     }
 
-    public function create() {
-        return view('customer.address.form_create');
+    public function create()
+    {
+        $order = Order::where([
+            ['user_id', '=', auth()->user()->id],
+            ['status', '=', 'not yet paid off']
+        ])->first();
+
+        return view('customer.address.form_create', compact(('order')));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $address = new Address();
         $address->recipient_name = $request->recipient_name;
         $address->recipient_phone_number = $request->recipient_phone_number;
@@ -40,13 +57,19 @@ class AddressController extends Controller
         return redirect('addresses');
     }
 
-    public function edit(string $id) {
+    public function edit(string $id)
+    {
         $address = Address::find($id);
+        $order = Order::where([
+            ['user_id', '=', auth()->user()->id],
+            ['status', '=', 'not yet paid off']
+        ])->first();
 
-        return view('customer.address.form_edit', compact('address'));
+        return view('customer.address.form_edit', compact('address', 'order'));
     }
 
-    public function update(Request $request, string $id) {
+    public function update(Request $request, string $id)
+    {
         $address = Address::find($id);
         $address->recipient_name = $request->recipient_name;
         $address->recipient_phone_number = $request->recipient_phone_number;
@@ -63,7 +86,8 @@ class AddressController extends Controller
         return redirect('addresses');
     }
 
-    public function destroy(string $id) {
+    public function destroy(string $id)
+    {
         $address = Address::find($id);
         $address->delete();
 

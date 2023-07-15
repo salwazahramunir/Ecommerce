@@ -37,7 +37,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($addresses) 
+                                @if($addresses)
                                     @php $no = 1 @endphp
                                     @foreach ($addresses as $row)
                                         <tr>
@@ -60,15 +60,6 @@
                                         </tr>
                                         @php $no++ @endphp
                                     @endforeach
-                                @else
-                                    <tr>
-                                        <td colspan="3" class="text-center">
-                                            <b>There are no products yet</b>
-                                            <br>
-                                            <a href="{{ route('shops') }}" class="primary-btn btn-sm mt-4">Shop Now</a>
-                                        </td>
-                                    </tr>
-                                    
                                 @endif
                             </tbody>
                         </table>

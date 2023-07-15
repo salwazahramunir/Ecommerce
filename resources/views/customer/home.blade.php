@@ -422,7 +422,7 @@
                             <span>Follow us on instagram</span>
                             <h2>Sweet moments are saved as memories.</h2>
                         </div>
-                        <h5><i class="fa fa-instagram"></i> @sweetcake</h5>
+                        <h5><i class="fa fa-instagram"></i> @cakestore</h5>
                     </div>
                 </div>
                 <div class="col-lg-8">

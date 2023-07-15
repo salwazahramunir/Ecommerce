@@ -1,4 +1,7 @@
 @extends('admin.layout.app_admin')
 @section('content')
-    Ini adalah dashboard
+    <div class="container my-5">
+        <h2>Dashboard</h2>
+        <hr>
+    </div>
 @endsection

@@ -26,12 +26,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $order = Order::where([
-            ['user_id', '=', 2],
-            ['status', '=', 'not yet paid off']
-        ])->first();
+        if (auth()->user()) { // jika sudah login
+            if (auth()->user()->role == 'admin') { // jika role adalah admin
+                return redirect('/dashboard');
+            } else {
+                $order = Order::where([
+                    ['user_id', '=', auth()->user()->id],
+                    ['status', '=', 'not yet paid off']
+                ])->first();
+                $products = Product::orderByDesc('created_at')->take(8)->get();
+
+                return view('customer.home', compact('products', 'order'));
+            }
+        }
+
         $products = Product::orderByDesc('created_at')->take(8)->get();
-        
-        return view('customer.home', compact('products', 'order'));
+
+        return view('customer.home', compact('products'));
     }
 }
